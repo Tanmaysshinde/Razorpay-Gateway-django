@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row row-content" style="display : block; padding : 3rem;">
+        <div class="col">
+            <form class="text-center" action="" method="POST">
+            <p class="h3 mb-3"><i class="fa fa-coffee"></i> BUY ME A COFFEE!!</p>
+            <p class="mb-3">Help us create more videos by donating 500 INR</p>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type ="submit" class='btn btn-primary' id="rzp-button1" onclick="rzp()" value="Pay with Razorpay">
+            </form>
+        </div>
+    </div>
+</div>
+<!-- {% if payment %}
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "rzp_test_YeUQJn3xhNMSok",
+    "amount": "{{payment.amount}}",
+    "currency": "{{payment.currency}}",
+    "name": "Acme Corp",
+    "description": "Test Transaction",
+    "image": "https://images.crowdspring.com/blog/wp-content/uploads/2017/07/27131755/9b475a68-ee0f-4895-8082-2a4706cfeb4b.png",
+    "order_id": "{{payment.id}}",
+    //"callback_url":"success",
+    "handler": function (response){
+        var payment_id= response.razorpay_payment_id;
+        sessionStorage.setItem("paymentid", payment_id);
+        var date = new Date();
+        var n = date.toDateString();
+        var time = date.toLocaleTimeString();
+        paid_on = n + ' ' + time;
+        sessionStorage.setItem("paidon", paid_on);
+        window.location.href = "success";
+
+    },
+    "prefill": {
+        "name": "'Gaurav Kuma'r",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9999999999"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#F37254"
+    }
+};
+var rzp1 = new Razorpay(options);
+var amt = "{{payment.amount}}";
+amount = amt/100;
+//document.getElementById("amt").innerHTML =  amount;
+sessionStorage.setItem("amount", amount);
+rzp1.on('payment.failed', function (response){
+    alert(response.error.code);
+    alert(response.error.description);
+    alert(response.error.source);
+    alert(response.error.step);
+    alert(response.error.reason);
+    alert(response.error.metadata.order_id);
+    alert(response.error.metadata.payment_id);
+});
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    epreventDefault();
+}
+</script>
+{% endif %} -->
+    <!-- {% if payment %}
+    <script
+        src="https://checkout.razorpay.com/v1/checkout.js"
+        data-key="rzp_test_YeUQJn3xhNMSok" 
+        data-amount="{{payment.amount}}"
+        data-currency="{{payment.currency}}"
+        data-order_id="{{ payment.id }}"
+        data-buttontext="Pay with Razorpay1"
+        data-name="Donate for Coffee"
+        data-description="A Wild Sheep Chase is the third novel by Japanese author Haruki Murakami"
+        data-image="https://images.crowdspring.com/blog/wp-content/uploads/2017/07/27131755/9b475a68-ee0f-4895-8082-2a4706cfeb4b.png"
+        data-prefill.name="Gaurav Kumar"
+        data-prefill.email="gaurav.kumar@example.com"
+        data-theme.color="#F37254"
+    ></script>
+    <input type="hidden" custom="Hidden Element" name="hidden">
+    {% endif %} -->
+{% endblock content %}
